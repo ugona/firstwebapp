@@ -5,7 +5,7 @@ const app = express();
 const router = express.Router();
 const cors = require('cors')
 app.use(cors);
-router.get('/', function (req, res) {
+router.get('/', cors(), function (req, res) {
     res.send({
         data: {
             message: 'OK',
