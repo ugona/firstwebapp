@@ -5,12 +5,10 @@ function EmployeeDetailsComponent() {
   const [employeeData, setEmployeeData] = React.useState(null);
 
   React.useEffect(()=>{
-    fetch('http://localhost:8000/getEmployee', {
-      credentials: 'same-origin'
-    })
+    fetch('/getEmployee')
     .then(res => res.json())
     .then(result => {
-      console.log(result); setEmployeeData(result.data)});
+      setEmployeeData(result.data)});
   })
   
   

@@ -4,7 +4,7 @@ const express = require('express')
 const app = express();
 const router = express.Router();
 const cors = require('cors')
-app.use(cors);
+//app.use(cors);
 router.get('/', cors(), function (req, res) {
     res.send({
         data: {
@@ -14,10 +14,10 @@ router.get('/', cors(), function (req, res) {
     })
 })
 
-router.get('/getEmployee', function (req, res) {
+router.get('/getEmployee', cors(), function (req, res) {
     res.send({
         data: {
-            name: 'Umamahesh'
+            name: 'Umamahesh ...'
         },
         message: 'OK',
         status: 200
@@ -25,6 +25,7 @@ router.get('/getEmployee', function (req, res) {
 })
 
 app.use(router);
+app.use(cors);
 app.listen(process.env.port | port)
 console.log('Server Running at Port - ' + process.env.port | port);
 // const server = http.createServer(function (req, res) {
