@@ -9,7 +9,7 @@ const mysql = require('mysql');
 
 const connection = mysql.createConnection({
     host: 'localhost',
-    user: 'mahesh',
+    user: 'root',
     password: '21041992.a',
     database: 'testdb'
 })
@@ -42,11 +42,10 @@ router.get('/getEmployeeFromDB', cors(), function (req, res) {
             connection.query(strQuery, function (err, result) {
                 if (err) console.log(err);
                 console.log(result);
-
-                let db = { name: 'test name' }
+               
                 res.send({
                     data: {
-                        name: db.name
+                        name: result[0].name
                     },
                     message: 'OK',
                     status: 200
@@ -55,7 +54,9 @@ router.get('/getEmployeeFromDB', cors(), function (req, res) {
         } catch (error) {
             console.log(error);
         }
-        finally { connection.destroy(); }
+        finally { 
+           // connection.released();
+         }
 
 
     });
