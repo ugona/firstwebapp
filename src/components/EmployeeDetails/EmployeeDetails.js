@@ -5,11 +5,11 @@ function EmployeeDetailsComponent() {
   const [employeeData, setEmployeeData] = React.useState(null);
 
   React.useEffect(()=>{
-    fetch('/getEmployee')
+    fetch('/getEmployeeFromDB')
     .then(res => res.json())
     .then(result => {
       setEmployeeData(result.data)});
-  })
+  },[])
   
   
     return  (
