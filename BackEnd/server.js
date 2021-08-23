@@ -31,6 +31,40 @@ router.get('/getEmployee', cors(), function (req, res) {
         status: 200
     })
 })
+
+router.post('/postEmployee', cors(), function (req, res) {
+   // fetch data from front end here
+  // let data = object;
+    let data={name:"jindal",id:'2',email:'maheshjindalsaw',create: '2021-08-19 07:04:00'}
+    connection.connect(function (err) {
+        if (err) console.log(err);
+
+        console.log('connected')
+        const strQuery = 'insert into employeetable (name, id, email, create_time) values ("'+ data.name+'","'+data.id+'","'+data.email+'","'+data.create+'")';
+        try {
+            connection.query(strQuery, function (err, result) {
+                if (err) console.log(err);
+                console.log(result);
+               
+                res.send({
+                    data: {
+                        row: result.affectedRows
+                    },
+                    message: 'OK',
+                    status: 200
+                })
+            })
+        } catch (error) {
+            console.log(error);
+        }
+        finally { 
+           // connection.released();
+         }
+
+
+    });
+})
+
 router.get('/getEmployeeFromDB', cors(), function (req, res) {
     // call DB query here to fetch name from table 
     connection.connect(function (err) {
